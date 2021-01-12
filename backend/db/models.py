@@ -6,6 +6,7 @@ class User(Base):
     __tablename__ = "users"
     id = Column('id', Integer, primary_key=True, index=True)
     name = Column('name', String(32), unique=True)
+    password = Column('password', String(32))
 
 
 class Sensor_tokens(Base):
@@ -13,6 +14,7 @@ class Sensor_tokens(Base):
     sensor_id = Column("sensor_id", String(32), primary_key=True)
     token_1 = Column("token_1", String(32))
     token_2 = Column("token_2", String(32))
+    name = Column('password', String(32))
 
     def check_tokens(self, token_1, token_2):
         return (self.token_1 == token_1 and self.token_2 == token_2)
