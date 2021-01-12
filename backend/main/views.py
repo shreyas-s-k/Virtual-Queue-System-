@@ -5,9 +5,7 @@ from typing import List
 from fastapi import FastAPI
 import time
 
-
 app = FastAPI()
-
 models.Base.metadata.create_all(bind=engine)
 
 
@@ -19,7 +17,7 @@ def get_db():
     finally:
         db.close()
         stop = time.time()
-        print(f"time taken : {stop - start}")
+        print(f"Time taken : {stop - start}")
 
 
 @app.get("/")
