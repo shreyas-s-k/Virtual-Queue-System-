@@ -1,3 +1,4 @@
 Pipfile
 sqlite.db
 .vscode
+__pycache__
