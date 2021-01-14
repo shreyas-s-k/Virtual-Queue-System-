@@ -1,15 +1,19 @@
 import sqlalchemy as sa
 from db import Base, schemas
 import datetime
+from sqlalchemy.orm import relationship, backref
 
 
 class User(Base):
     __tablename__ = "user"
-    id = sa.Column(sa.String, primary_key=True,
+    id = sa.Column(sa.String(50), primary_key=True,
                    index=True)
-    first_name = sa.Column(sa.String)
-    last_name = sa.Column(sa.String)
-    password = sa.Column(sa.String)
+    first_name = sa.Column(sa.String(50))
+    last_name = sa.Column(sa.String(50))
+    password = sa.Column(sa.String(50))
+
+    # Relationship
+    events = relationship("Event", backref="user")
 
     def toModel(self, user: schemas.UserCreate):
         self.id = user.id
@@ -22,13 +26,14 @@ class Event(Base):
     __tablename__ = "event"
     id = sa.Column(sa.Integer, primary_key=True,
                    index=True, autoincrement=True)
-    name = sa.Column(sa.String)
-    description = sa.Column(sa.Text)
+    name = sa.Column(sa.String(50))
+    description = sa.Column(sa.String(255))
     time_created = sa.Column(sa.DateTime(
         timezone=True), server_default=sa.sql.func.now())
     time_updated = sa.Column(sa.DateTime(timezone=True),
                              onupdate=sa.sql.func.now())
-    user_id = sa.Column(sa.ForeignKey('user.id'))
+    # Foreign Key
+    user_id = sa.Column(sa.String(50), sa.ForeignKey('user.id'))
     start_time = sa.Column(sa.DateTime, nullable=False)
     end_time = sa.Column(sa.DateTime, nullable=False)
 
