@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Dashboard from './components/dashboard';
+import addEvent from './components/events/addEvent';
 import Navbar from './components/layout/Navbar'
 
 class App extends Component {
@@ -7,6 +9,11 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Navbar />
+        <Switch>
+          <Route path='/' exact component={Dashboard} />
+          <Route path='/addEvent' component={addEvent} />
+
+        </Switch>
       </BrowserRouter>
 
 

@@ -14,4 +14,17 @@ code {
 
 .navbar-brand {
   font-size: xx-large;
+  text-decoration: none;
+}
+
+.brand {
+  text-decoration: none;
+  color: white;
+}
+
+.events {
+  border-left: 1px solid grey;
+
+  /* margin-top: 20%; */
+  top: 0;
 }
