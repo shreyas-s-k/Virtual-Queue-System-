@@ -52,3 +52,7 @@ class SlotInfo(BaseModel):
     end_time: datetime.datetime
     event_id: str
     participant_limit: int
+    id: Optional[int] = None
+
+    class Config:
+        orm_mode = True

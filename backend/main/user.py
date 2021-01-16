@@ -9,3 +9,8 @@ router = APIRouter(prefix="/user",
                    tags=["user"],
                    dependencies=[Depends(IsAuthenticaded)],
                    responses={404: {"description": "Not found"}},)
+
+
+@router.get("/details")
+async def get_user_details():
+    pass

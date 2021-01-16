@@ -83,3 +83,11 @@ def createSlot(db: Session, slot: schemas.SlotInfo):
     db.commit()
     db.refresh(new_slot)
     return new_slot
+
+
+def view_event_slots(db: Session, pk: str):
+    return db.query(models.Slot).filter(models.Slot.event_id == pk)
+
+
+def view_event(db: Session, pk: str):
+    return db.query(models.Event).filter(models.Event.id == pk).first()
