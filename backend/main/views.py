@@ -1,10 +1,14 @@
-from db import models, engine, crud, SessionLocal, schemas
-from fastapi import Depends, FastAPI, HTTPException
+from main import user, events, auth
+from main.get_db import get_db
+from db import models, engine, crud, schemas
+from fastapi import Depends, FastAPI, HTTPException, Response, Request
 from sqlalchemy.orm import Session
 from typing import List
-import time
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import RedirectResponse
+from main.permissions import IsAuthenticaded
+from main.middleware import add_process_time_header
+from starlette.middleware.base import BaseHTTPMiddleware
 
 
 if True:
@@ -17,9 +21,10 @@ if True:
         cursor.execute("PRAGMA foreign_keys=ON")
         cursor.close()
 
-
 app = FastAPI()
+
 models.Base.metadata.create_all(bind=engine)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -28,32 +33,13 @@ app.add_middleware(
     allow_credentials=True,
 )
 
+app.add_middleware(BaseHTTPMiddleware, dispatch=add_process_time_header)
 
-def get_db():
-    start = time.time()
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-        stop = time.time()
-        print(f"Time taken : {stop - start}")
+app.include_router(user.router)
+app.include_router(events.router)
+app.include_router(auth.router)
 
 
 @app.get("/")
 def main():
     return RedirectResponse(url="/docs/")
-
-
-@app.post("/create/user")
-def signup(user: schemas.UserCreate, db: Session = Depends(get_db)):
-    if crud.get_user_by_id(db=db, user_id=user.id):
-        raise HTTPException(
-            status_code=400, detail="Username already registered")
-
-    return crud.createUser(user=user, db=db)
-
-
-@app.post("/create/event")
-def createEvent(event: schemas.CreateEvent, db: Session = Depends(get_db)):
-    return crud.createEvent(db=db, event=event)

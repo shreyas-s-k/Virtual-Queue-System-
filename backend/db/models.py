@@ -13,7 +13,8 @@ class User(Base):
     password = sa.Column(sa.String(50))
 
     # Relationship
-    events = relationship("Event", backref="user")
+    events = relationship("Event", backref="user", lazy=True)
+    participant = relationship('Participant', backref='user', lazy=True)
 
     def toModel(self, user: schemas.UserCreate):
         self.id = user.id
@@ -32,10 +33,13 @@ class Event(Base):
         timezone=True), server_default=sa.sql.func.now())
     time_updated = sa.Column(sa.DateTime(timezone=True),
                              onupdate=sa.sql.func.now())
-    # Foreign Key
     user_id = sa.Column(sa.String(50), sa.ForeignKey('user.id'))
     start_time = sa.Column(sa.DateTime, nullable=False)
     end_time = sa.Column(sa.DateTime, nullable=False)
+
+    # Relationship
+    slot = relationship('Slot', backref='event', lazy=True)
+    participant = relationship('Participant', backref='event', lazy=True)
 
 
 class Slot(Base):
@@ -46,6 +50,9 @@ class Slot(Base):
     end_time = sa.Column(sa.DateTime, nullable=False)
     event_id = sa.Column(sa.ForeignKey('event.id'), nullable=False)
     participant_limit = sa.Column(sa.Integer, nullable=False)
+
+    # Relationship
+    participant = relationship('Participant', backref='slot', lazy=True)
 
 
 class Participant(Base):

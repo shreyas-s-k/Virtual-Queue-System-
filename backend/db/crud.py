@@ -56,3 +56,15 @@ def createEvent(db: Session, event: schemas.CreateEvent):
     db.commit()
     db.refresh(new_event)
     return new_event
+
+
+def login(db: Session, user: schemas.UserLogin):
+
+    new_user = db.query(models.User).filter(
+        models.User.id == user.id).first()
+
+    if new_user:
+        if new_user.password == user.password:
+            return True
+    else:
+        return False

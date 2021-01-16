@@ -26,8 +26,8 @@ class UserInfo(BaseModel):
     last_name: Optional[str] = None
 
 
-class UserLogin(BaseModel):
-    id: str
+class UserLogin(UserInfo):
+    # id: str
     password: str
 
 
