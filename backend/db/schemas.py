@@ -25,17 +25,16 @@ class UserInfo(BaseModel):
     first_name: Optional[str] = None
     last_name: Optional[str] = None
 
+    class Config:
+        orm_mode = True
 
-class UserLogin(UserInfo):
-    # id: str
+
+class UserCredentials(UserInfo):
     password: str
 
 
-class UserCreate(UserInfo):
-    password: str
-
-
-class CreateEvent(BaseModel):
+class EventInfo(BaseModel):
+    id: str
     name: str
     description: str
     time_created: Optional[datetime.datetime] = Body(None)
@@ -43,3 +42,13 @@ class CreateEvent(BaseModel):
     user_id: str
     start_time: datetime.datetime
     end_time: datetime.datetime
+
+    class Config:
+        orm_mode = True
+
+
+class SlotInfo(BaseModel):
+    start_time: datetime.datetime
+    end_time: datetime.datetime
+    event_id: str
+    participant_limit: int

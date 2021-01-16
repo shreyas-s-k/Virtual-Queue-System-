@@ -32,7 +32,7 @@ def get_user_by_id(db: Session, user_id: int):
 #     return authenticated
 
 
-def createUser(db: Session, user: schemas.UserCreate):
+def createUser(db: Session, user: schemas.UserCredentials):
     new_user = models.User()
     new_user.toModel(user=user)
     db.add(new_user)
@@ -41,9 +41,10 @@ def createUser(db: Session, user: schemas.UserCreate):
     return new_user
 
 
-def createEvent(db: Session, event: schemas.CreateEvent):
+def createEvent(db: Session, event: schemas.EventInfo):
     new_event = models.Event()
 
+    new_event.id = event.id
     new_event.name = event.name
     new_event.description = event.description
     new_event.end_time = event.end_time
@@ -58,7 +59,7 @@ def createEvent(db: Session, event: schemas.CreateEvent):
     return new_event
 
 
-def login(db: Session, user: schemas.UserLogin):
+def login(db: Session, user: schemas.UserCredentials):
 
     new_user = db.query(models.User).filter(
         models.User.id == user.id).first()
@@ -68,3 +69,17 @@ def login(db: Session, user: schemas.UserLogin):
             return True
     else:
         return False
+
+
+def createSlot(db: Session, slot: schemas.SlotInfo):
+    new_slot = models.Slot()
+
+    new_slot.start_time = slot.start_time
+    new_slot.end_time = slot.end_time
+    new_slot.event_id = slot.event_id
+    new_slot.participant_limit = slot.participant_limit
+
+    db.add(new_slot)
+    db.commit()
+    db.refresh(new_slot)
+    return new_slot

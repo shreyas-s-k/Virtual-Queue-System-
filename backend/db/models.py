@@ -16,7 +16,7 @@ class User(Base):
     events = relationship("Event", backref="user", lazy=True)
     participant = relationship('Participant', backref='user', lazy=True)
 
-    def toModel(self, user: schemas.UserCreate):
+    def toModel(self, user: schemas.UserCredentials):
         self.id = user.id
         self.first_name = user.first_name
         self.last_name = user.last_name
@@ -25,8 +25,8 @@ class User(Base):
 
 class Event(Base):
     __tablename__ = "event"
-    id = sa.Column(sa.Integer, primary_key=True,
-                   index=True, autoincrement=True)
+    id = sa.Column(sa.String(50), primary_key=True,
+                   index=True)
     name = sa.Column(sa.String(50))
     description = sa.Column(sa.String(255))
     time_created = sa.Column(sa.DateTime(
@@ -62,3 +62,4 @@ class Participant(Base):
     user_id = sa.Column(sa.ForeignKey('user.id'), nullable=False)
     event_id = sa.Column(sa.ForeignKey('event.id'), nullable=False)
     slot_id = sa.Column(sa.ForeignKey('slot.id'), nullable=False)
+    token = sa.Column(sa.Integer)

@@ -1,8 +1,8 @@
 """message
 
-Revision ID: 386c6f5e2f48
+Revision ID: 697c6f5de058
 Revises: 
-Create Date: 2021-01-14 21:39:07.440921
+Create Date: 2021-01-16 18:41:16.755628
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '386c6f5e2f48'
+revision = '697c6f5de058'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -27,7 +27,7 @@ def upgrade():
     )
     op.create_index(op.f('ix_user_id'), 'user', ['id'], unique=False)
     op.create_table('event',
-    sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
+    sa.Column('id', sa.String(length=50), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=True),
     sa.Column('description', sa.String(length=255), nullable=True),
     sa.Column('time_created', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
@@ -43,7 +43,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('start_time', sa.DateTime(), nullable=False),
     sa.Column('end_time', sa.DateTime(), nullable=False),
-    sa.Column('event_id', sa.Integer(), nullable=False),
+    sa.Column('event_id', sa.String(length=50), nullable=False),
     sa.Column('participant_limit', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['event_id'], ['event.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -52,8 +52,9 @@ def upgrade():
     op.create_table('participant',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('user_id', sa.String(length=50), nullable=False),
-    sa.Column('event_id', sa.Integer(), nullable=False),
+    sa.Column('event_id', sa.String(length=50), nullable=False),
     sa.Column('slot_id', sa.Integer(), nullable=False),
+    sa.Column('token', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['event_id'], ['event.id'], ),
     sa.ForeignKeyConstraint(['slot_id'], ['slot.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
