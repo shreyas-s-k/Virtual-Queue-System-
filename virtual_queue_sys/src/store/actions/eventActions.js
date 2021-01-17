@@ -10,10 +10,53 @@ export const createEvent = (event) => {
 
         }).then(res => {
             console.log('createEvent', res)
+            dispatch({ type: 'CREATE_EVENT_SUCCESS', event })
         }).catch(err => {
             console.log('createEventError', err.response)
 
         })
     }
 
+}
+
+export const createSlots = (slot) => {
+    return (dispatch) => {
+        axios({
+            method: 'POST',
+            url: base_url + "/event/slot",
+            data: slot,
+
+        }).then(res => {
+            console.log('createSlot', res)
+            dispatch({ type: 'CREATE_SLOT_SUCCESS', })
+        }).catch(err => {
+            console.log('createSlotError', err.response)
+
+        })
+    }
+
+}
+
+export const viewSlots = (event_id) => {
+    return (dispatch) => {
+        axios({
+            method: 'GET',
+            url: base_url + "/event/slot/" + event_id,
+
+
+        }).then(res => {
+            console.log('viewSlot', res)
+            dispatch({ type: 'VIEW_SLOT_SUCCESS', res })
+        }).catch(err => {
+            console.log('viewSlotError', err.response)
+
+        })
+    }
+
+}
+
+export const finishCreateEvent = () => {
+    return (dispatch) => {
+        dispatch({ type: 'HOST_SUCCESS' })
+    }
 }
