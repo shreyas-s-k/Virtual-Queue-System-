@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import { createEvent } from '../../store/actions/eventActions';
 
 export class addEvent extends Component {
-    // const[selectedDate, setSelectedDate]=useState(null)
+    status = '';
     state = {
         id: '',
         name: '',
@@ -28,6 +28,8 @@ export class addEvent extends Component {
         e.preventDefault();
         console.log(this.state);
         this.props.createEvent(this.state)
+
+
     }
 
     selectDate = (date) => {
@@ -56,6 +58,8 @@ export class addEvent extends Component {
     }
 
     render() {
+        console.log(this.props.createEvent_status);
+        if (this.props.createEvent_status) return <Redirect to='/createSlot' />
         if (!localStorage.getItem('login')) return <Redirect to='/signin' />
         console.log('hello');
         console.log(this.state);
@@ -89,11 +93,15 @@ export class addEvent extends Component {
         )
     }
 }
-
+const mapStateToProps = (state) => {
+    return {
+        createEvent_status: state.event.createEvent_status
+    }
+}
 const mapDispatchToProps = (dispatch) => {
     return {
         createEvent: (event) => dispatch(createEvent(event)),
 
     }
 }
-export default connect(null, mapDispatchToProps)(addEvent)
+export default connect(mapStateToProps, mapDispatchToProps)(addEvent)
