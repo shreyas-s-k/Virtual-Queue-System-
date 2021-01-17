@@ -25,14 +25,14 @@ async def login(request: Request, response: Response, user: schemas.UserCredenti
     else:
         if crud.login(db=db, user=user):
             response.set_cookie(key="Authenticated",
-                                value="True", httponly=True, domain="http://127.0.0.1:3000")
+                                value="True", httponly=True,  domain='localhost')
             response.set_cookie(key="User",
-                                value=user.id, domain="http://127.0.0.1:3000",)
+                                value=user.id, domain='localhost')
 
             return {'detail': 'Authentication Successfull'}
         else:
             response.set_cookie(key="Authenticated",
-                                value="False", httponly=True, domain="http://127.0.0.1:3000")
+                                value="False", httponly=True,  domain='localhost')
             response.status_code = 401
             return {'detail': 'Authentication Failed'}
 
@@ -41,9 +41,9 @@ async def login(request: Request, response: Response, user: schemas.UserCredenti
 async def logout(response: Response, request: Request):
     if request.cookies.get("Authenticated", "False") == "True":
         response.set_cookie(key="Authenticated", value="False",
-                            httponly=True, domain="http://127.0.0.1:3000")
+                            httponly=True,  domain='localhost')
         response.set_cookie(key="User",
-                            domain="http://127.0.0.1:3000")
+                            domain='localhost')
 
         return {'detail': 'Successfully Logged Out'}
     else:

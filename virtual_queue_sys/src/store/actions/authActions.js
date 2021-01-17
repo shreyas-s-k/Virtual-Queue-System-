@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 
 const base_url = "http://127.0.0.1:5000";
 export const userSignup = (user) => {
@@ -22,14 +22,39 @@ export const userSignup = (user) => {
   };
 };
 
+// export const userLogin = (user) => {
+//   const url = base_url + "/auth/login";
+//   return (dispatch) => {
+//     axios({
+//       method: "post",
+//       url: url,
+//       data: user,
+//       withCredentials: true,
+//       referrerPolicy: "origin-when-cross-origin",
+//     })
+//       .then((res) => {
+//         console.log(res);
+//         localStorage.setItem("login", "true");
+//         localStorage.setItem("user", user.id);
+//         // console.log(res.headers["Set-Cookie"]);
+//         // Cookies.set("Authenticated", "True");
+//         dispatch({ type: "AUTH_SUCCESS", res });
+//       })
+//       .catch((err) => {
+//         console.log(err.response.data.code);
+//         console.log(err.response.data);
+//         dispatch({ type: "AUTH_FAILED", err });
+//       });
+//   };
+// };
 export const userLogin = (user) => {
   const url = base_url + "/auth/login";
   return (dispatch) => {
-    axios({
-      method: "post",
-      credentials: "include",
-      url: url,
-      data: user,
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify(user),
+      credentials: "same-origin",
+      referrerPolicy: "strict-origin-when-cross-origin",
     })
       .then((res) => {
         console.log(res);
@@ -39,8 +64,8 @@ export const userLogin = (user) => {
         dispatch({ type: "AUTH_SUCCESS", res });
       })
       .catch((err) => {
-        console.log(err.response.data.code);
-        console.log(err.response.data);
+        console.log(err.response);
+        console.log(err.response);
         dispatch({ type: "AUTH_FAILED", err });
       });
   };
