@@ -60,7 +60,7 @@ export class addEvent extends Component {
     render() {
         console.log(this.props.createEvent_status);
         if (this.props.createEvent_status) return <Redirect to='/createSlot' />
-        if (!localStorage.getItem('login')) return <Redirect to='/signin' />
+        if (!this.props.login_status) return <Redirect to='/signin' />
         console.log('hello');
         console.log(this.state);
         return (
@@ -95,7 +95,8 @@ export class addEvent extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        createEvent_status: state.event.createEvent_status
+        createEvent_status: state.event.createEvent_status,
+        login_status: state.auth.login_status
     }
 }
 const mapDispatchToProps = (dispatch) => {

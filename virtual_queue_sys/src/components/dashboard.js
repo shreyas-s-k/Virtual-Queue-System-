@@ -4,8 +4,8 @@ import { displayEvents } from '../store/actions/eventActions'
 import { Link, NavLink, Redirect } from 'react-router-dom'
 class Dashboard extends Component {
     render() {
-
-        if (!this.props.login_status) { return <Redirect to='/signin' /> }
+        console.log(this.props);
+        if (!this.props.login_status) return <Redirect to='/signin' />
         return (
             <div className="container mt-5">
                 <div class="alert alert-danger" role="alert">
