@@ -11,7 +11,8 @@ async def add_process_time_header(request: Request, call_next):
     # response.headers["X-Frame-Options"] = "DENY"
     # response.headers["Access-Control-Allow-Headers"] = "Set-Cookie"
     # response.headers["Access-Control-Allow-Origin"] = "http://127.0.0.0:3000"
-    response.headers["Access-Control-Allow-Headers"] = 'Origin, X-Requested-With, Content-Type, Accept, set-cookie'
+    response.headers["Access-Control-Allow-Headers"] = 'Origin, X-Requested-With, Content-Type, Accept, Set-Cookie'
+    response.headers["Access-Control-Expose-Headers"] = 'set-cookie'
 
     print(f'Total Time : {str(process_time)}')
     return response

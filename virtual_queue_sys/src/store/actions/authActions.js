@@ -35,7 +35,7 @@ export const userLogin = (user) => {
         console.log(res);
         localStorage.setItem("login", "true");
         localStorage.setItem("user", user.id);
-        Cookies.set("cookies", res.headers["Set-Cookie"]);
+        Cookies.set("Authenticated", "True");
         dispatch({ type: "AUTH_SUCCESS", res });
       })
       .catch((err) => {
@@ -57,6 +57,7 @@ export const userLogout = () => {
       .then((res) => {
         console.log(res);
         localStorage.clear();
+        Cookies.set("Authenticated", "False");
         dispatch({ type: "LOGOUT_SUCCESS" });
       })
       .catch((err) => {
