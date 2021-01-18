@@ -25,6 +25,8 @@ class Signup extends Component {
 
 
     render() {
+        console.log(this.props);
+        if (this.props.login_status) { return <Redirect to='/' /> }
         return (
             <div className="container form-rounded col-sm-4 mt-5">
 
@@ -42,7 +44,7 @@ class Signup extends Component {
                         </div>
                     </div>
                     <input className="form-control textbox my-2 " type="password" id="password" placeholder="Password" onChange={this.handleChange} required />
-                    <center><hr /><button type="submit" className="btn btn-outline-success authbtn mt-3 mb-4 btn-block  " onClick={this.handleSubmit}>Sign Up</button></center>
+                    <center className="d-grid gap-2"><hr /><button type="submit" className="btn btn-outline-success authbtn mt-3 mb-4 btn-block   " onClick={this.handleSubmit}>Sign Up</button></center>
 
 
                 </form>
@@ -53,7 +55,7 @@ class Signup extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-
+        login_status: state.auth.login_status
     }
 }
 

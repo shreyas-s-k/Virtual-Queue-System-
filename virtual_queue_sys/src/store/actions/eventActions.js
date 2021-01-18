@@ -63,3 +63,36 @@ export const finishCreateEvent = () => {
         dispatch({ type: "HOST_SUCCESS" });
     };
 };
+
+
+export const viewUserEvents = (user_id) => {
+    return (dispatch) => {
+        axios({
+            method: 'GET',
+            url: base_url + "/event/user/" + user_id,
+        }).then(res => {
+            console.log('ViewUserEvents', res);
+            dispatch({ type: 'VIEW_USER_EVENTS', res })
+
+        }).catch(err => {
+            console.log('viewUserEventsError', err.response);
+        })
+    }
+}
+
+
+export const viewEventDetails = (event_id) => {
+    return (dispatch) => {
+        axios({
+            method: 'GET',
+            url: base_url + "/event/" + event_id,
+        }).then(res => {
+            console.log('ViewEventDetails', res);
+            dispatch({ type: 'VIEW_EVENT_DETAILS', res })
+            viewSlots(event_id, dispatch)
+
+        }).catch(err => {
+            console.log('ViewEventDetailsError', err.response);
+        })
+    }
+}

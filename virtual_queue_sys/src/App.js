@@ -5,6 +5,8 @@ import SignUp from './components/auth/SignUp';
 import Dashboard from './components/dashboard';
 import addEvent from './components/events/addEvent';
 import createSlot from './components/events/createSlot';
+import eventDetails from './components/events/eventDetails';
+import events from './components/events/events';
 import Navbar from './components/layout/Navbar'
 
 class App extends Component {
@@ -18,6 +20,8 @@ class App extends Component {
           <Route path='/signin' component={SignIn} />
           <Route path='/hostEvent' component={addEvent} />
           <Route path='/createSlot' component={createSlot} />
+          <Route path='/events' component={events} />
+          <Route path='/event/:event_id' component={eventDetails} />
 
         </Switch>
       </BrowserRouter>

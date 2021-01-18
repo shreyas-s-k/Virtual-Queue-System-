@@ -29,7 +29,7 @@ class SignIn extends Component {
                     <div className="input-control">
                         <input className="form-control textbox my-2 " type="text" id="id" placeholder="User ID" onChange={this.handleChange} required />
                         <input className="form-control textbox my-3" type="password" id="password" placeholder="Password" onChange={this.handleChange} required />
-                        <center><hr /><button type="submit" className="btn btn-outline-success btn-block authbtn  mt-3 mb-4" onClick={this.handleSubmit}>Login</button></center>
+                        <center className="d-grid gap-2"><hr /><button type="submit" className="btn btn-outline-success btn-block authbtn  mt-3 mb-4" onClick={this.handleSubmit}>Login</button></center>
                     </div>
                 </form>
 

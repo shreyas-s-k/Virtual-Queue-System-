@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom'
 import TimePicker from 'react-time-picker';
-import { createSlots, finishCreateEvent, viewSlots } from '../../store/actions/eventActions';
+import { createSlots, finishCreateEvent } from '../../store/actions/eventActions';
 import { Link } from 'react-router-dom'
 
 
@@ -90,7 +90,7 @@ export class createSlot extends Component {
                                     <table className="table table-hover table-striped">
                                         <thead class="table-dark">
                                             <tr>
-                                                <th>Slot_ID</th>
+                                                <th>Sl.No</th>
                                                 <th>Start_Time</th>
                                                 <th>End_Time</th>
                                                 <th>Participant_limit</th>
@@ -103,7 +103,7 @@ export class createSlot extends Component {
                                                 return (
 
                                                     <tr>
-                                                        <td>{slot.id}</td>
+                                                        <td>{index + 1}</td>
                                                         <td>{slot.start_time}</td>
                                                         <td>{slot.end_time}</td>
                                                         <td>{slot.participant_limit}</td>

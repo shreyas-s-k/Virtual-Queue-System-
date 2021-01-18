@@ -3,6 +3,8 @@ const initState = {
     event_id: null,
     event_date: null,
     event_slots: [],
+    events: [],
+    eventDetails: null
 
 }
 
@@ -31,6 +33,17 @@ const eventReducer = (state = initState, action) => {
                 event_id: null,
                 event_date: null,
                 event_slots: []
+
+            }
+        case 'VIEW_USER_EVENTS':
+            return {
+                ...state,
+                events: action.res.data
+            }
+        case 'VIEW_EVENT_DETAILS':
+            return {
+                ...state,
+                eventDetails: action.res.data
 
             }
         default: return state
