@@ -29,7 +29,7 @@ class Dashboard extends Component {
                     </p>
                     <hr />
                     <span class="mb-0 float-right">
-                        <button type='button' className='btn btn-outline-success'>Attend</button>
+                        <NavLink to='/attendEvent'><button type='button' className='btn btn-outline-success'>Attend</button></NavLink>
                     </span>
 
                 </div>

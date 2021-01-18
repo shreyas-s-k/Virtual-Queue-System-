@@ -88,11 +88,34 @@ export const viewEventDetails = (event_id) => {
             url: base_url + "/event/" + event_id,
         }).then(res => {
             console.log('ViewEventDetails', res);
-            dispatch({ type: 'VIEW_EVENT_DETAILS', res })
             viewSlots(event_id, dispatch)
+            dispatch({ type: 'VIEW_EVENT_DETAILS', res })
+
 
         }).catch(err => {
             console.log('ViewEventDetailsError', err.response);
+        })
+    }
+}
+
+export const clearEvents = () => {
+    return (dispatch) => {
+        dispatch({ type: 'CLEAR_EVENTS' })
+    }
+}
+
+export const bookEvent = (slot_details) => {
+    return (dispatch) => {
+        axios({
+            method: 'POST',
+            url: base_url + "/event/attend",
+            data: slot_details
+        }).then(res => {
+            console.log('bookEvent', res);
+
+
+        }).catch(err => {
+            console.log('bookEventError', err.response);
         })
     }
 }

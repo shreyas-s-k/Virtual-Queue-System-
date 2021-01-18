@@ -17,7 +17,8 @@ const eventReducer = (state = initState, action) => {
                 ...state,
                 createEvent_status: true,
                 event_id: action.event.id,
-                event_date: action.event.date
+                event_date: action.event.date,
+                event_slots: []
             }
         case 'CREATE_SLOT_SUCCESS':
             return state
@@ -44,6 +45,14 @@ const eventReducer = (state = initState, action) => {
             return {
                 ...state,
                 eventDetails: action.res.data
+
+            }
+        case 'CLEAR_EVENTS':
+            return {
+                ...state,
+                eventDetails: null,
+                event_slots: []
+
 
             }
         default: return state

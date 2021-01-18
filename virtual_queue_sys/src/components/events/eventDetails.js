@@ -9,7 +9,7 @@ export class eventDetails extends Component {
     }
     render() {
         if (!this.props.login_status) return <Redirect to='/signin' />
-        console.log(this.props);
+        console.log(this.props.eventDetails);
         return (
 
             <div className="container mt-5">
