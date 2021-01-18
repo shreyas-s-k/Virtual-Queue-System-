@@ -47,3 +47,8 @@ def view_all_slots(event_id: str, db: Session = Depends(get_db)):
 @router.post("/attend")
 def create_participant(participant: schemas.ParcipantInfo, db: Session = Depends(get_db)):
     return crud.create_participant(db=db, participant=participant)
+
+
+@router.get("/participants/{event_id}")
+def view_partcipants(event_id: str, db: Session = Depends(get_db)):
+    return crud.view_participants(db=db, event_id=event_id)

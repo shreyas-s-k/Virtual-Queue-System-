@@ -111,3 +111,7 @@ def create_participant(participant: schemas.ParcipantInfo, db: Session):
     db.commit()
     db.refresh(db_participant)
     return db_participant
+
+
+def view_participants(event_id: str, db: Session):
+    return db.query(models.Participant).filter(models.Participant.event_id == event_id).all()
