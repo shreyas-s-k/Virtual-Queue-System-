@@ -1,5 +1,6 @@
 from db import models, schemas
 from sqlalchemy.orm import Session
+from sqlalchemy import func
 
 
 def get_user_by_id(db: Session, user_id: int):
@@ -89,5 +90,24 @@ def view_event_slots(db: Session, pk: str):
     return db.query(models.Slot).filter(models.Slot.event_id == pk)
 
 
-def view_event(db: Session, pk: str):
+def view_event_details(db: Session, pk: str):
     return db.query(models.Event).filter(models.Event.id == pk).first()
+
+
+def vew_user_events(user_id: str, db: Session):
+    return db.query(models.Event).filter(models.Event.user_id == user_id).all()
+
+
+def create_participant(participant: schemas.ParcipantInfo, db: Session):
+    db_participant = models.Participant(**participant.dict())
+    max = db.query(func.max(models.Participant.token)).scalar()
+
+    if max:
+        db_participant.token = max+1
+    else:
+        db_participant.token = 1
+
+    db.add(db_participant)
+    db.commit()
+    db.refresh(db_participant)
+    return db_participant

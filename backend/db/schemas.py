@@ -43,3 +43,17 @@ class SlotInfo(BaseModel):
 
 class Slot(SlotInfo):
     id: int
+
+
+class ParcipantInfo(BaseModel):
+    user_id: str
+    event_id: str
+    slot_id: int
+
+    class Config:
+        orm_mode = True
+
+
+class Participant(ParcipantInfo):
+    id: int
+    token: int

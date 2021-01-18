@@ -21,8 +21,13 @@ def create_event(event: schemas.EventInfo, db: Session = Depends(get_db)):
 
 
 @router.get("/{event_id}")
-def view_event(event_id: str, db: Session = Depends(get_db)):
-    return crud.view_event(db=db, pk=event_id)
+def view_event_details(event_id: str, db: Session = Depends(get_db)):
+    return crud.view_event_details(db=db, pk=event_id)
+
+
+@router.get("/user/{user_id}", response_model=List[schemas.EventInfo])
+def view_user_events(user_id: str, db: Session = Depends(get_db)):
+    return crud.vew_user_events(user_id=user_id, db=db)
 
 
 @router.post("/slot")
@@ -33,7 +38,12 @@ def create_slot(slot: schemas.SlotInfo, db: Session = Depends(get_db)):
         raise HTTPException(status_code=400, detail="Failed")
 
 
-@router.get("/slot/{event_id}", response_model=List[schemas.SlotInfo])
+@router.get("/slot/{event_id}", response_model=List[schemas.Slot])
 def view_all_slots(event_id: str, db: Session = Depends(get_db)):
     print(f"this is {event_id}")
     return crud.view_event_slots(db=db, pk=event_id).all()
+
+
+@router.post("/attend")
+def create_participant(participant: schemas.ParcipantInfo, db: Session = Depends(get_db)):
+    return crud.create_participant(db=db, participant=participant)
