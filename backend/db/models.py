@@ -50,6 +50,7 @@ class Slot(Base):
     end_time = sa.Column(sa.DateTime, nullable=False)
     event_id = sa.Column(sa.ForeignKey('event.id'), nullable=False)
     participant_limit = sa.Column(sa.Integer, nullable=False)
+    available_tokens = sa.Column(sa.Integer)
 
     # Relationship
     participant = relationship('Participant', backref='slot', lazy=True)

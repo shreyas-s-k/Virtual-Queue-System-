@@ -38,7 +38,7 @@ def create_slot(slot: schemas.SlotInfo, db: Session = Depends(get_db)):
         raise HTTPException(status_code=400, detail="Failed")
 
 
-@router.get("/slot/{event_id}", response_model=List[schemas.Slot])
+@router.get("/slot/{event_id}")
 def view_all_slots(event_id: str, db: Session = Depends(get_db)):
     print(f"this is {event_id}")
     return crud.view_event_slots(db=db, pk=event_id).all()

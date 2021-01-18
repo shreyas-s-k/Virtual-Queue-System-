@@ -1,6 +1,7 @@
 from db import models, schemas
 from sqlalchemy.orm import Session
 from sqlalchemy import func
+from fastapi import HTTPException
 
 
 def get_user_by_id(db: Session, user_id: int):
@@ -73,7 +74,8 @@ def login(db: Session, user: schemas.UserCredentials):
 
 
 def createSlot(db: Session, slot: schemas.SlotInfo):
-    new_slot = models.Slot(**slot.dict())
+    new_slot = models.Slot(
+        **slot.dict(), available_tokens=slot.participant_limit)
 
     # new_slot.start_time = slot.start_time
     # new_slot.end_time = slot.end_time
@@ -100,7 +102,17 @@ def vew_user_events(user_id: str, db: Session):
 
 def create_participant(participant: schemas.ParcipantInfo, db: Session):
     db_participant = models.Participant(**participant.dict())
-    max = db.query(func.max(models.Participant.token)).scalar()
+    db_slot = db.query(models.Slot).filter(
+        models.Slot.id == participant.slot_id).first()
+
+    if db_slot.available_tokens <= 0:
+        raise HTTPException(status_code=404, detail="Tokens Not Available")
+
+    db_slot.available_tokens -= 1
+    db.add(db_slot)
+
+    max = db.query(func.max(models.Participant.token)).filter(models.Participant.slot_id ==
+                                                              participant.slot_id, models.Slot.event_id == participant.event_id).scalar()
 
     if max:
         db_participant.token = max+1
