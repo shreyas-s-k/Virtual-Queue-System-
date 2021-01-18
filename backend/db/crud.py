@@ -72,12 +72,12 @@ def login(db: Session, user: schemas.UserCredentials):
 
 
 def createSlot(db: Session, slot: schemas.SlotInfo):
-    new_slot = models.Slot()
+    new_slot = models.Slot(**slot.dict())
 
-    new_slot.start_time = slot.start_time
-    new_slot.end_time = slot.end_time
-    new_slot.event_id = slot.event_id
-    new_slot.participant_limit = slot.participant_limit
+    # new_slot.start_time = slot.start_time
+    # new_slot.end_time = slot.end_time
+    # new_slot.event_id = slot.event_id
+    # new_slot.participant_limit = slot.participant_limit
 
     db.add(new_slot)
     db.commit()
