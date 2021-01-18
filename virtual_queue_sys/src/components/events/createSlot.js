@@ -17,7 +17,7 @@ export class createSlot extends Component {
 
     selectTime = (time, name) => {
         const tym = time.split(":").map(i => Number(i)).map(i => Number(i));
-        const date = this.props.event_date
+        const date = new Date(this.props.event_date)
         // console.log(new Date(date.getFullYear(), date.getMonth(), date.getDate(), tym[0], tym[1], 0).toISOString());
         if (name === 'start_time') {
             this.setState({
@@ -39,8 +39,9 @@ export class createSlot extends Component {
         const slot = { ...this.state, event_id: this.props.event_id }
         e.preventDefault();
         console.log(slot);
-        this.props.createSlots(slot)
-        this.props.viewSlots(this.props.event_id)
+        this.props.createSlots(slot, this.props.event_id)
+        // this.props.viewSlots(this.props.event_id)
+
 
 
     }
@@ -49,9 +50,9 @@ export class createSlot extends Component {
     }
 
     render() {
-        console.log(this.props.create);
+
         if (!this.props.createEvent_status) return <Redirect to='/hostEvent' />
-        if (!localStorage.getItem('login')) return <Redirect to='/signin' />
+        if (!this.props.login_status) return <Redirect to='/signin' />
         return (
 
             <div className="container-fluid mt-5 ">
@@ -129,6 +130,7 @@ export class createSlot extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        login_status: state.auth.login_status,
         event_id: state.event.event_id,
         event_date: state.event.event_date,
         event_slots: state.event.event_slots,
@@ -138,8 +140,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createSlots: (slot) => dispatch(createSlots(slot)),
-        viewSlots: (event_id) => dispatch(viewSlots(event_id)),
+        createSlots: (slot, event_id) => dispatch(createSlots(slot, event_id)),
+        // viewSlots: (event_id) => dispatch(viewSlots(event_id)),
         finishCreateEvent: () => dispatch(finishCreateEvent())
 
     }

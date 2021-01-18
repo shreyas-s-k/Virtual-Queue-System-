@@ -43,7 +43,7 @@ export class addEvent extends Component {
 
     selectTime = (time, name) => {
         const tym = time.split(":").map(i => Number(i)).map(i => Number(i));
-        const date = this.state.date
+        const date = new Date(this.state.date)
         console.log(new Date(date.getFullYear(), date.getMonth(), date.getDate(), tym[0], tym[1], 0).toISOString());
         if (name === 'start_time') {
             this.setState({

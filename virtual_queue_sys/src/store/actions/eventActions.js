@@ -19,7 +19,7 @@ export const createEvent = (event) => {
 
 }
 
-export const createSlots = (slot) => {
+export const createSlots = (slot, event_id) => {
     return (dispatch) => {
         axios({
             method: 'POST',
@@ -29,6 +29,7 @@ export const createSlots = (slot) => {
         }).then(res => {
             console.log('createSlot', res)
             dispatch({ type: 'CREATE_SLOT_SUCCESS', })
+            viewSlots(event_id, dispatch)
         }).catch(err => {
             console.log('createSlotError', err.response)
 
@@ -37,21 +38,22 @@ export const createSlots = (slot) => {
 
 }
 
-export const viewSlots = (event_id) => {
-    return (dispatch) => {
-        axios({
-            method: 'GET',
-            url: base_url + "/event/slot/" + event_id,
+function viewSlots(event_id, dispatch) {
+    console.log('ViewSlots fn', event_id);
+
+    axios({
+        method: 'GET',
+        url: base_url + "/event/slot/" + event_id,
 
 
-        }).then(res => {
-            console.log('viewSlot', res)
-            dispatch({ type: 'VIEW_SLOT_SUCCESS', res })
-        }).catch(err => {
-            console.log('viewSlotError', err.response)
+    }).then(res => {
+        console.log('viewSlot', res)
+        dispatch({ type: 'VIEW_SLOT_SUCCESS', res })
+    }).catch(err => {
+        console.log('viewSlotError', err.response)
 
-        })
-    }
+    })
+
 
 }
 
