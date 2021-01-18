@@ -82,7 +82,7 @@ export const userLogout = () => {
             .then((res) => {
                 console.log(res);
                 localStorage.clear();
-                Cookies.set("Authenticated", "False");
+                // Cookies.set("Authenticated", "False");
                 dispatch({ type: "LOGOUT_SUCCESS" });
             })
             .catch((err) => {

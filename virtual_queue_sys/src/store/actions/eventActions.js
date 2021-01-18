@@ -1,23 +1,24 @@
 import axios from "axios";
 
-const base_url = 'http://127.0.0.1:5000'
+axios.defaults.withCredentials = true;
+
+const base_url = "http://127.0.0.1:5000";
 export const createEvent = (event) => {
     return (dispatch) => {
         axios({
-            method: 'POST',
+            method: "POST",
             url: base_url + "/event",
-            data: { ...event, user_id: localStorage.getItem('user') },
-
-        }).then(res => {
-            console.log('createEvent', res)
-            dispatch({ type: 'CREATE_EVENT_SUCCESS', event })
-        }).catch(err => {
-            console.log('createEventError', err.response)
-
+            data: { ...event, user_id: localStorage.getItem("user") },
         })
-    }
-
-}
+            .then((res) => {
+                console.log("createEvent", res);
+                dispatch({ type: "CREATE_EVENT_SUCCESS", event });
+            })
+            .catch((err) => {
+                console.log("createEventError", err.response);
+            });
+    };
+};
 
 export const createSlots = (slot, event_id) => {
     return (dispatch) => {
@@ -59,6 +60,6 @@ function viewSlots(event_id, dispatch) {
 
 export const finishCreateEvent = () => {
     return (dispatch) => {
-        dispatch({ type: 'HOST_SUCCESS' })
-    }
-}
+        dispatch({ type: "HOST_SUCCESS" });
+    };
+};
