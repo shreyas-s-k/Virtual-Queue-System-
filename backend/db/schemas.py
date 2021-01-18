@@ -4,22 +4,6 @@ import datetime
 from fastapi import Body
 
 
-class UserList(BaseModel):
-    id: int
-    name: str
-
-    class Config:
-        orm_mode = True
-
-
-class ApiInsert(BaseModel):
-    token: str
-    data: list
-
-    class Config:
-        orm_mode = True
-
-
 class UserInfo(BaseModel):
     id: str
     first_name: Optional[str] = None
@@ -52,7 +36,10 @@ class SlotInfo(BaseModel):
     end_time: datetime.datetime
     event_id: str
     participant_limit: int
-    id: Optional[int] = None
 
     class Config:
         orm_mode = True
+
+
+class Slot(SlotInfo):
+    id: int
