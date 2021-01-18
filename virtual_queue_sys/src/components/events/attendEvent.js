@@ -11,6 +11,7 @@ export class attendEvent extends Component {
     }
     componentDidMount() {
         this.props.clearEvents()
+
     }
 
     handleChange = (e) => {
@@ -44,8 +45,9 @@ export class attendEvent extends Component {
     }
 
     render() {
-        console.log(this.props);
+        if (this.props.bookStatus) return <Redirect to='/confirmation' />
         if (!this.props.login_status) return <Redirect to='/signin' />
+
         return (
             <div className="container mt-5">
                 <h3 className="text-primary">Attend an Event</h3><hr />
@@ -78,7 +80,7 @@ export class attendEvent extends Component {
                                     <table className="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th>Sl.No</th>
+                                                <th>Slot_ID</th>
                                                 <th>Start_Time</th>
                                                 <th>End_Time</th>
                                                 <th>Participant_limit</th>
@@ -92,7 +94,7 @@ export class attendEvent extends Component {
                                                 return (
 
                                                     <tr>
-                                                        <td>{index + 1}</td>
+                                                        <td>{slot.id}</td>
                                                         <td>{slot.start_time}</td>
                                                         <td>{slot.end_time}</td>
                                                         <td>{slot.participant_limit}</td>
@@ -127,6 +129,7 @@ const mapStateToProps = (state) => {
         login_status: state.auth.login_status,
         eventDetails: state.event.eventDetails,
         event_slots: state.event.event_slots,
+        bookStatus: state.event.bookStatus
 
     }
 }

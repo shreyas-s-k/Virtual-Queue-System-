@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { displayEvents } from '../store/actions/eventActions'
+import { clearEvents } from '../store/actions/eventActions'
 import { Link, NavLink, Redirect } from 'react-router-dom'
 class Dashboard extends Component {
+    componentDidMount() {
+        this.props.clearEvents()
+
+    }
+
     render() {
         console.log(this.props);
         if (!this.props.login_status) return <Redirect to='/signin' />
@@ -43,6 +48,13 @@ const mapStateToProps = (state) => {
         login_status: state.auth.login_status
     }
 }
+const mapDispatchToProps = (dispatch) => {
+    return {
 
-export default connect(mapStateToProps)(Dashboard)
+        clearEvents: () => dispatch(clearEvents()),
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
 

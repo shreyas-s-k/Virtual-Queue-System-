@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { viewEventDetails } from '../../store/actions/eventActions'
+import { viewEventDetails, viewParticipants } from '../../store/actions/eventActions'
 import { Redirect } from 'react-router-dom'
 
 export class eventDetails extends Component {
     componentDidMount() {
         this.props.viewEventDetails(this.props.match.params.event_id)
+        this.props.viewParticipants(this.props.match.params.event_id)
+
     }
     render() {
         if (!this.props.login_status) return <Redirect to='/signin' />
-        console.log(this.props.eventDetails);
+        console.log(this.props);
         return (
 
             <div className="container mt-5">
@@ -36,7 +38,7 @@ export class eventDetails extends Component {
                                 <table className="table table-hover table-striped">
                                     <thead class="table-dark">
                                         <tr>
-                                            <th>Sl.No</th>
+                                            <th>Slot_ID</th>
                                             <th>Start_Time</th>
                                             <th>End_Time</th>
                                             <th>Participant_limit</th>
@@ -49,10 +51,51 @@ export class eventDetails extends Component {
                                             return (
 
                                                 <tr>
-                                                    <td>{index + 1}</td>
+                                                    <td>{slot.id}</td>
                                                     <td>{slot.start_time}</td>
                                                     <td>{slot.end_time}</td>
                                                     <td>{slot.participant_limit}</td>
+
+                                                </tr>
+
+                                            )
+                                        })}
+
+                                    </tbody>
+
+
+                                </table>
+                            </div>
+
+
+                        </div> : null}<br />
+
+                    {this.props.participants.length ?
+
+                        <div>
+                            <h3 className="text-primary"> Event Participants </h3><hr />
+                            <div className="table-responsive">
+                                <table className="table table-hover table-striped">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>Sl.No</th>
+                                            <th>Slot_ID</th>
+                                            <th>User_ID</th>
+
+                                            <th>Token</th>
+
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+                                        {this.props.participants && this.props.participants.map((participant, index) => {
+                                            return (
+
+                                                <tr>
+                                                    <td>{participant.id}</td>
+                                                    <td>{participant.slot_id}</td>
+                                                    <td>{participant.user_id}</td>
+                                                    <td>{participant.token}</td>
 
                                                 </tr>
 
@@ -78,12 +121,14 @@ const mapStateToProps = (state) => {
         login_status: state.auth.login_status,
         eventDetails: state.event.eventDetails,
         event_slots: state.event.event_slots,
+        participants: state.event.participants
 
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        viewEventDetails: (event_id) => dispatch(viewEventDetails(event_id))
+        viewEventDetails: (event_id) => dispatch(viewEventDetails(event_id)),
+        viewParticipants: (event_id) => dispatch(viewParticipants(event_id))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(eventDetails)

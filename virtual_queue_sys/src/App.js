@@ -9,6 +9,7 @@ import eventDetails from './components/events/eventDetails';
 import events from './components/events/events';
 import Navbar from './components/layout/Navbar'
 import attendEvent from './components/events/attendEvent'
+import confirmation from './components/events/confirmation';
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
           <Route path='/events' component={events} />
           <Route path='/event/:event_id' component={eventDetails} />
           <Route path='/attendEvent' component={attendEvent} />
+          <Route path='/confirmation' component={confirmation} />
 
         </Switch>
       </BrowserRouter>

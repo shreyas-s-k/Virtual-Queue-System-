@@ -66,7 +66,7 @@ export class addEvent extends Component {
         return (
             <div className="container col-sm-6 mt-5">
                 <h3 className="text-primary"> Host an Event</h3><hr />
-                <form className='form-group'>
+                <form className='form-group' onSubmit={this.handleSubmit}>
                     <label>Event ID:</label>
                     <input type='text' id="id" className="form-control mt-1 mb-2" placeholder="Unique ID for the event" onChange={this.handleChange}></input>
                     <label>Name:</label>
