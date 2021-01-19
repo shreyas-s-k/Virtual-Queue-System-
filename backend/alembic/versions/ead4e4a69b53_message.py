@@ -1,8 +1,8 @@
 """message
 
-Revision ID: 8fd3ece55845
+Revision ID: ead4e4a69b53
 Revises: 
-Create Date: 2021-01-18 13:34:33.141661
+Create Date: 2021-01-18 20:05:54.905254
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '8fd3ece55845'
+revision = 'ead4e4a69b53'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -45,6 +45,7 @@ def upgrade():
     sa.Column('end_time', sa.DateTime(), nullable=False),
     sa.Column('event_id', sa.String(length=50), nullable=False),
     sa.Column('participant_limit', sa.Integer(), nullable=False),
+    sa.Column('available_tokens', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['event_id'], ['event.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
