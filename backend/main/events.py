@@ -52,3 +52,8 @@ def create_participant(participant: schemas.ParcipantInfo, db: Session = Depends
 @router.get("/participants/{event_id}")
 def view_partcipants(event_id: str, db: Session = Depends(get_db)):
     return crud.view_participants(db=db, event_id=event_id)
+
+
+@router.get("/registered-events/{user_id}", response_model=List[List])
+def view_user_registered_events(user_id: str, db: Session = Depends(get_db)):
+    return crud.view_user_registered_events(user_id=user_id, db=db)
