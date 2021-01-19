@@ -4,6 +4,7 @@ import { Redirect, Link } from 'react-router-dom'
 
 const confirmation = (props) => {
     if (!props.login_status) return <Redirect to='/signin' />
+    if (!props.bookStatus) return <Redirect to='/' />
     console.log(props);
     return (
         <div className="container col-sm-5 mt-5">
@@ -11,7 +12,7 @@ const confirmation = (props) => {
             {props.eventDetails ?
 
 
-                <div class="card border-primary mb-3" >
+                <div class="card border-primary mb-3 shadow" >
                     <div class="card-header">ID: <b>{props.eventDetails.id}</b></div>
                     <div class="card-body text-primary">
                         <h5 class="card-title">{props.eventDetails.name}</h5>

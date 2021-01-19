@@ -44,6 +44,7 @@ class Signup extends Component {
                         </div>
                     </div>
                     <input className="form-control textbox my-2 " type="password" id="password" placeholder="Password" onChange={this.handleChange} required />
+                    {this.props.regerr ? <div className="text-danger">{this.props.regerr.data.detail}</div> : null}
                     <center className="d-grid gap-2"><hr /><button type="submit" className="btn btn-outline-success authbtn mt-3 mb-4 btn-block   " onClick={this.handleSubmit}>Sign Up</button></center>
 
 
@@ -55,7 +56,8 @@ class Signup extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        login_status: state.auth.login_status
+        login_status: state.auth.login_status,
+        regerr: state.auth.regerr
     }
 }
 

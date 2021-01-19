@@ -5,6 +5,7 @@ axios.defaults.withCredentials = true;
 const base_url = "http://127.0.0.1:5000";
 export const createEvent = (event) => {
     return (dispatch) => {
+        dispatch({ type: 'LOADING', action: true })
         axios({
             method: "POST",
             url: base_url + "/event",
@@ -22,6 +23,7 @@ export const createEvent = (event) => {
 
 export const createSlots = (slot, event_id) => {
     return (dispatch) => {
+        dispatch({ type: 'LOADING', action: true })
         axios({
             method: "POST",
             url: base_url + "/event/slot",
@@ -62,6 +64,7 @@ export const finishCreateEvent = () => {
 
 export const viewUserEvents = (user_id) => {
     return (dispatch) => {
+        dispatch({ type: 'LOADING', action: true })
         axios({
             method: "GET",
             url: base_url + "/event/user/" + user_id,
@@ -78,6 +81,7 @@ export const viewUserEvents = (user_id) => {
 
 export const viewEventDetails = (event_id) => {
     return (dispatch) => {
+        dispatch({ type: 'LOADING', action: true })
         axios({
             method: "GET",
             url: base_url + "/event/" + event_id,
@@ -101,6 +105,7 @@ export const clearEvents = () => {
 
 export const bookEvent = (slot_details) => {
     return (dispatch) => {
+        dispatch({ type: 'LOADING', action: true })
         axios({
             method: "POST",
             url: base_url + "/event/attend",

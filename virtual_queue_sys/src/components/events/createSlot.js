@@ -104,8 +104,8 @@ export class createSlot extends Component {
 
                                                     <tr>
                                                         <td>{slot.id}</td>
-                                                        <td>{slot.start_time}</td>
-                                                        <td>{slot.end_time}</td>
+                                                        <td>{new Date(slot.start_time).toUTCString()}</td>
+                                                        <td>{new Date(slot.end_time).toUTCString()}</td>
                                                         <td>{slot.participant_limit}</td>
 
                                                     </tr>

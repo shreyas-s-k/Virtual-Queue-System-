@@ -7,6 +7,7 @@ const base_url = "http://127.0.0.1:5000";
 export const userSignup = (user) => {
     const url = base_url + "/auth/signup";
     return (dispatch) => {
+        dispatch({ type: 'LOADING', action: true })
         axios({
             method: "post",
             url: url,
@@ -15,6 +16,7 @@ export const userSignup = (user) => {
             .then((res) => {
                 console.log(res.code);
                 dispatch({ type: "REG_SUCCESS", res });
+
             })
             .catch((err) => {
                 dispatch({ type: "REG_FAILED", err });
@@ -25,6 +27,7 @@ export const userSignup = (user) => {
 export const userLogin = (user) => {
     const url = base_url + "/auth/login";
     return (dispatch) => {
+        dispatch({ type: 'LOADING', action: true })
         axios({
             method: "post",
             url: url,
@@ -74,6 +77,7 @@ export const userLogin = (user) => {
 export const userLogout = () => {
     const url = base_url + "/auth/logout";
     return (dispatch) => {
+        dispatch({ type: 'LOADING', action: true })
         axios({
             method: "get",
             url: url,

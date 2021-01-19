@@ -6,7 +6,8 @@ const initState = {
     events: [],
     eventDetails: null,
     bookStatus: null,
-    participants: []
+    participants: [],
+    loading: false
 
 }
 
@@ -20,10 +21,24 @@ const eventReducer = (state = initState, action) => {
                 createEvent_status: true,
                 event_id: action.event.id,
                 event_date: action.event.date,
-                event_slots: []
+                event_slots: [],
+                loading: false
+            }
+        case 'CREATE_EVENT_ERROR':
+            return {
+                ...state,
+                loading: false
             }
         case 'CREATE_SLOT_SUCCESS':
-            return state
+            return {
+                ...state,
+                loading: false
+            }
+        case 'CREATE_SLOT_ERROR':
+            return {
+                ...state,
+                loading: false
+            }
         case 'VIEW_SLOT_SUCCESS':
             return {
                 ...state,
@@ -41,12 +56,15 @@ const eventReducer = (state = initState, action) => {
         case 'VIEW_USER_EVENTS':
             return {
                 ...state,
-                events: action.res.data
+                events: action.res.data,
+                loading: false
+
             }
         case 'VIEW_EVENT_DETAILS':
             return {
                 ...state,
-                eventDetails: action.res.data
+                eventDetails: action.res.data,
+                loading: false
 
             }
         case 'CLEAR_EVENTS':
@@ -62,12 +80,23 @@ const eventReducer = (state = initState, action) => {
         case 'BOOK_EVENT_SUCCESS':
             return {
                 ...state,
-                bookStatus: action.res.data
+                bookStatus: action.res.data,
+                loading: false
+            }
+        case 'BOOK_EVENT_ERROR':
+            return {
+                ...state,
+                loading: false
             }
         case 'VIEW_PARTICIPANTS':
             return {
                 ...state,
                 participants: action.res.data
+            }
+        case 'LOADING':
+            return {
+                ...state,
+                loading: true
             }
         default: return state
     }

@@ -18,7 +18,7 @@ export class eventDetails extends Component {
                 {this.props.eventDetails ? <div>
                     <h3 className="text-primary"> Event Details </h3><hr />
 
-                    <div class="card border-primary mb-3" >
+                    <div class="card border-primary mb-3 shadow" >
                         <div class="card-header">ID: <b>{this.props.eventDetails.id}</b></div>
                         <div class="card-body text-primary">
                             <h5 class="card-title">{this.props.eventDetails.name}</h5>
@@ -42,6 +42,7 @@ export class eventDetails extends Component {
                                             <th>Start_Time</th>
                                             <th>End_Time</th>
                                             <th>Participant_limit</th>
+                                            <th>Available_Tokens</th>
 
                                         </tr>
 
@@ -52,9 +53,10 @@ export class eventDetails extends Component {
 
                                                 <tr>
                                                     <td>{slot.id}</td>
-                                                    <td>{slot.start_time}</td>
-                                                    <td>{slot.end_time}</td>
+                                                    <td>{new Date(slot.start_time).toUTCString()}</td>
+                                                    <td>{new Date(slot.end_time).toUTCString()}</td>
                                                     <td>{slot.participant_limit}</td>
+                                                    <td>{slot.available_tokens}</td>
 
                                                 </tr>
 

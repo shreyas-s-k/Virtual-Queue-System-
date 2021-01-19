@@ -56,11 +56,11 @@ export class attendEvent extends Component {
                     <input type='text' id="event_id" className="form-control mt-1 mb-2" placeholder="Unique ID of the event" onChange={this.handleChange}></input>
                     <button type="submit" className="btn btn-success mt-2" onClick={this.handleSubmit}>View Details</button>
                 </form>
-                <div className="container mt-5">
+                <div className="mt-5">
                     {this.props.eventDetails ? <div>
                         <h3 className="text-primary"> Event Details </h3><hr />
 
-                        <div class="card border-primary mb-3" >
+                        <div class="card border-primary mb-3 shadow" >
                             <div class="card-header">ID: <b>{this.props.eventDetails.id}</b></div>
                             <div class="card-body text-primary">
                                 <h5 class="card-title">{this.props.eventDetails.name}</h5>
@@ -95,8 +95,8 @@ export class attendEvent extends Component {
 
                                                     <tr>
                                                         <td>{slot.id}</td>
-                                                        <td>{slot.start_time}</td>
-                                                        <td>{slot.end_time}</td>
+                                                        <td>{new Date(slot.start_time).toUTCString()}</td>
+                                                        <td>{new Date(slot.end_time).toUTCString()}</td>
                                                         <td>{slot.participant_limit}</td>
                                                         <td>{slot.available_tokens}</td>
                                                         <td><button id='slot_id' className="btn btn-primary" value={parseInt(slot.id)} onClick={this.handleChange}>Select slot</button></td>
@@ -115,7 +115,9 @@ export class attendEvent extends Component {
 
                             </div> : null}
                         {this.state.slot_id ? <div className="my-2"><hr />
-                            <button id="book" type="submit" className="btn btn-success" onClick={this.handleSubmit}>Book Slot</button>
+                            <br />
+                            <b className="text-danger">Selected Slot : {this.state.slot_id}</b><br />
+                            <button id="book" type="submit" className="btn btn-success mt-1" onClick={this.handleSubmit}>Book Slot</button>
                         </div> : null}
                     </div> : null}
                 </div>
