@@ -20,6 +20,7 @@ class SignIn extends Component {
         this.props.userLogin(this.state)
     }
     render() {
+        console.log(this.props.autherr);
         if (this.props.login_status) { return <Redirect to='/' /> }
         return (
             <div className="signin container form-rounded col-sm-3 mt-5">
@@ -29,6 +30,7 @@ class SignIn extends Component {
                     <div className="input-control">
                         <input className="form-control textbox my-2 " type="text" id="id" placeholder="User ID" onChange={this.handleChange} required />
                         <input className="form-control textbox my-3" type="password" id="password" placeholder="Password" onChange={this.handleChange} required />
+                        <center>{this.props.autherr ? <div className="text-danger">{this.props.autherr.data.detail}</div> : null}</center>
                         <center className="d-grid gap-2"><hr /><button type="submit" className="btn btn-outline-success btn-block authbtn  mt-3 mb-4" onClick={this.handleSubmit}>Login</button></center>
                     </div>
                 </form>
@@ -41,6 +43,7 @@ class SignIn extends Component {
 const mapStateToProps = (state) => {
     return {
         login_status: state.auth.login_status,
+        autherr: state.auth.autherr
     }
 }
 const mapDispatchToProps = (dispatch) => {

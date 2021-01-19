@@ -1,0 +1,76 @@
+.linear-progress {
+  background: #bbdefb;
+  height: 10px;
+  position: relative;
+  width: 50%;
+  margin: 0 auto;
+  /* margin-top: 2rem; */
+  overflow: hidden;
+  animation: start 0.3s ease-in;
+}
+.linear-progress.small {
+  width: 100%;
+  height: 5px;
+}
+.linear-progress .bar {
+  position: absolute;
+  background: #0275d8;
+  transition: transform 0.2s linear;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+.linear-progress .bar1 {
+  animation: progressLinearMovement 2.5s infinite;
+  animation-delay: 0;
+}
+.linear-progress .bar2 {
+  left: -100%;
+  animation: progressLinearMovement 2.5s infinite;
+  animation-delay: 0.7s;
+}
+@-moz-keyframes progressLinearMovement {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+@-webkit-keyframes progressLinearMovement {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+@-o-keyframes progressLinearMovement {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+@keyframes progressLinearMovement {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}

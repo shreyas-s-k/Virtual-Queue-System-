@@ -90,7 +90,7 @@ export class createSlot extends Component {
                                     <table className="table table-hover table-striped">
                                         <thead class="table-dark">
                                             <tr>
-                                                <th>Sl.No</th>
+                                                <th>Slot_ID</th>
                                                 <th>Start_Time</th>
                                                 <th>End_Time</th>
                                                 <th>Participant_limit</th>
@@ -103,9 +103,9 @@ export class createSlot extends Component {
                                                 return (
 
                                                     <tr>
-                                                        <td>{index + 1}</td>
-                                                        <td>{slot.start_time}</td>
-                                                        <td>{slot.end_time}</td>
+                                                        <td>{slot.id}</td>
+                                                        <td>{new Date(slot.start_time).toUTCString()}</td>
+                                                        <td>{new Date(slot.end_time).toUTCString()}</td>
                                                         <td>{slot.participant_limit}</td>
 
                                                     </tr>

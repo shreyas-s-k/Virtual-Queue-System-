@@ -18,7 +18,7 @@ export class events extends Component {
                 <h5 className="text-danger">Hosted :    </h5>
                 {this.props.events.length ?
 
-                    <div class="list-group">
+                    <div class="list-group shadow">
                         {this.props.events && this.props.events.map((event, index) => {
                             return (
                                 <NavLink to={`/event/` + event.id} class="list-group-item list-group-item-action " aria-current="true">

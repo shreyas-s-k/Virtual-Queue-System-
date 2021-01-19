@@ -3,8 +3,9 @@ import { NavLink, Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import SignedLinks from './SignedLinks';
 import SignedOutLinks from './SignedOutLinks';
+import '../../loading.css'
 const Navbar = (props) => {
-    console.log(props.login_status);
+    console.log(props);
     const link = props.login_status ? <SignedLinks /> : <SignedOutLinks />
     return (
         <div>
@@ -18,13 +19,21 @@ const Navbar = (props) => {
                     </div>
                 </div>
             </nav>
+            {props.loading1 ?
+                <div className="linear-progress small">
+                    <div className="bar bar1"></div>
+                    <div className="bar bar2"></div>
+                </div> : null}
+
 
         </div>
     )
 }
 const mapStateToProps = (state) => {
     return {
-        login_status: state.auth.login_status
+        login_status: state.auth.login_status,
+        loading1: state.auth.loading,
+        loading2: state.event.loading
     }
 }
 export default connect(mapStateToProps)(Navbar)
