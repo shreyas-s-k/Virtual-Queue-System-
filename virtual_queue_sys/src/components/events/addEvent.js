@@ -87,6 +87,8 @@ export class addEvent extends Component {
                             <TimePicker onChange={(time) => this.selectTime(time, 'end_time')} />
                         </div>
                     </div>
+                    {/* {this.props.eventerr ? <div className="text-danger">{this.props.eventerr.data.detail}</div> : null} */}
+                    <hr />
                     <button type="submit" className="btn btn-success mt-2" onClick={this.handleSubmit}>Host</button>
                 </form>
             </div>
@@ -96,7 +98,8 @@ export class addEvent extends Component {
 const mapStateToProps = (state) => {
     return {
         createEvent_status: state.event.createEvent_status,
-        login_status: state.auth.login_status
+        login_status: state.auth.login_status,
+        eventerr: state.event.eventerr
     }
 }
 const mapDispatchToProps = (dispatch) => {

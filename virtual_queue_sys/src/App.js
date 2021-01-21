@@ -10,6 +10,7 @@ import events from './components/events/events';
 import Navbar from './components/layout/Navbar'
 import attendEvent from './components/events/attendEvent'
 import confirmation from './components/events/confirmation';
+import { booking } from './components/events/booking';
 
 class App extends Component {
   render() {
@@ -26,7 +27,7 @@ class App extends Component {
           <Route path='/event/:event_id' component={eventDetails} />
           <Route path='/attendEvent' component={attendEvent} />
           <Route path='/confirmation' component={confirmation} />
-
+          <Route path='/booking' component={booking} />
         </Switch>
       </BrowserRouter>
 

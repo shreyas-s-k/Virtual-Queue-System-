@@ -16,6 +16,7 @@ export const userSignup = (user) => {
             .then((res) => {
                 console.log(res.code);
                 dispatch({ type: "REG_SUCCESS", res });
+                user_login({ id: user.id, password: user.password }, dispatch)
 
             })
             .catch((err) => {
@@ -24,31 +25,60 @@ export const userSignup = (user) => {
     };
 };
 
-export const userLogin = (user) => {
+function user_login(user, dispatch) {
     const url = base_url + "/auth/login";
-    return (dispatch) => {
-        dispatch({ type: 'LOADING', action: true })
-        axios({
-            method: "post",
-            url: url,
-            data: user,
-            withCredentials: true,
-            referrerPolicy: "origin-when-cross-origin",
+    dispatch({ type: 'LOADING', action: true })
+    axios({
+        method: "post",
+        url: url,
+        data: user,
+        withCredentials: true,
+        referrerPolicy: "origin-when-cross-origin",
+    })
+        .then((res) => {
+            console.log(res);
+            localStorage.setItem("login", "true");
+            localStorage.setItem("user", user.id);
+            // console.log(res.headers["Set-Cookie"]);
+            // Cookies.set("Authenticated", "True");
+            dispatch({ type: "AUTH_SUCCESS", res });
         })
-            .then((res) => {
-                console.log(res);
-                localStorage.setItem("login", "true");
-                localStorage.setItem("user", user.id);
-                // console.log(res.headers["Set-Cookie"]);
-                // Cookies.set("Authenticated", "True");
-                dispatch({ type: "AUTH_SUCCESS", res });
-            })
-            .catch((err) => {
-                console.log(err.response);
-                console.log(err.response);
-                dispatch({ type: "AUTH_FAILED", err });
-            });
-    };
+        .catch((err) => {
+            console.log(err.response);
+            console.log(err.response);
+            dispatch({ type: "AUTH_FAILED", err });
+        });
+};
+
+
+export const userLogin = (user) => {
+
+
+    return (dispatch) => {
+        user_login(user, dispatch)
+    }
+    //     dispatch({ type: 'LOADING', action: true })
+    //     axios({
+    //         method: "post",
+    //         url: url,
+    //         data: user,
+    //         withCredentials: true,
+    //         referrerPolicy: "origin-when-cross-origin",
+    //     })
+    //         .then((res) => {
+    //             console.log(res);
+    //             localStorage.setItem("login", "true");
+    //             localStorage.setItem("user", user.id);
+    //             // console.log(res.headers["Set-Cookie"]);
+    //             // Cookies.set("Authenticated", "True");
+    //             dispatch({ type: "AUTH_SUCCESS", res });
+    //         })
+    //         .catch((err) => {
+    //             console.log(err.response);
+    //             console.log(err.response);
+    //             dispatch({ type: "AUTH_FAILED", err });
+    //         });
+    // };
 };
 // export const userLogin = (user) => {
 //     const url = base_url + "/auth/login";

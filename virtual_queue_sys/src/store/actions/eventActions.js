@@ -16,6 +16,7 @@ export const createEvent = (event) => {
                 dispatch({ type: "CREATE_EVENT_SUCCESS", event });
             })
             .catch((err) => {
+                dispatch({ type: "CREATE_EVENT_ERROR", err });
                 console.log("createEventError", err.response);
             });
     };
@@ -35,6 +36,7 @@ export const createSlots = (slot, event_id) => {
                 viewSlots(event_id, dispatch);
             })
             .catch((err) => {
+                dispatch({ type: "CREATE_SLOT_ERROR" })
                 console.log("createSlotError", err.response);
             });
     };
@@ -117,6 +119,7 @@ export const bookEvent = (slot_details) => {
 
             })
             .catch((err) => {
+                dispatch({ type: "BOOK_EVENT_ERROR", err });
                 console.log("bookEventError", err.response);
             });
     };
@@ -135,6 +138,24 @@ export const viewParticipants = (event_id) => {
             })
             .catch((err) => {
                 console.log("viewParticipantsError", err.response);
+            });
+    };
+};
+
+export const viewParticipantEvents = (user_id) => {
+    return (dispatch) => {
+        dispatch({ type: 'LOADING', action: true })
+        axios({
+            method: "GET",
+            url: base_url + "/event/registered-events/" + user_id,
+        })
+            .then((res) => {
+                console.log("ViewPartitcipantEvents", res);
+                dispatch({ type: "VIEW_PARTICIPANT_EVENTS", res });
+            })
+            .catch((err) => {
+                console.log("viewPartitcipantEventsError", err.response);
+                dispatch({ type: "VIEW_PARTICIPANT_EVENTS_ERROR", err });
             });
     };
 };

@@ -7,7 +7,9 @@ const initState = {
     eventDetails: null,
     bookStatus: null,
     participants: [],
-    loading: false
+    loading: false,
+    eventerr: null,
+    userEvents: []
 
 }
 
@@ -27,7 +29,8 @@ const eventReducer = (state = initState, action) => {
         case 'CREATE_EVENT_ERROR':
             return {
                 ...state,
-                loading: false
+                loading: false,
+                eventerr: action.err.response
             }
         case 'CREATE_SLOT_SUCCESS':
             return {
@@ -37,12 +40,15 @@ const eventReducer = (state = initState, action) => {
         case 'CREATE_SLOT_ERROR':
             return {
                 ...state,
-                loading: false
+                loading: false,
+                eventerr: action.err.response
             }
         case 'VIEW_SLOT_SUCCESS':
             return {
                 ...state,
-                event_slots: action.res.data
+                event_slots: action.res.data,
+                loading: false,
+
             }
         case 'HOST_SUCCESS':
             return {
@@ -50,7 +56,8 @@ const eventReducer = (state = initState, action) => {
                 createEvent_status: false,
                 event_id: null,
                 event_date: null,
-                event_slots: []
+                event_slots: [],
+                loading: false,
 
             }
         case 'VIEW_USER_EVENTS':
@@ -73,7 +80,9 @@ const eventReducer = (state = initState, action) => {
                 eventDetails: null,
                 event_slots: [],
                 bookStatus: null,
-                participants: []
+                participants: [],
+                loading: false,
+                userEvents: []
 
 
             }
@@ -86,18 +95,28 @@ const eventReducer = (state = initState, action) => {
         case 'BOOK_EVENT_ERROR':
             return {
                 ...state,
-                loading: false
+                loading: false,
+                eventerr: action.err.response
             }
         case 'VIEW_PARTICIPANTS':
             return {
                 ...state,
-                participants: action.res.data
+                participants: action.res.data,
+                loading: false,
             }
         case 'LOADING':
             return {
                 ...state,
                 loading: true
             }
+        case 'VIEW_PARTICIPANT_EVENTS':
+            return {
+                ...state,
+                loading: false,
+                userEvents: action.res.data
+            }
+        case 'VIEW_PARTICIPANT_EVENTS_ERROR':
+            return state
         default: return state
     }
 

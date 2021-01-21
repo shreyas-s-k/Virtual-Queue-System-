@@ -19,11 +19,11 @@ const Navbar = (props) => {
                     </div>
                 </div>
             </nav>
-            {props.loading1 ?
+            {/* {props.loading1 ?
                 <div className="linear-progress small">
                     <div className="bar bar1"></div>
                     <div className="bar bar2"></div>
-                </div> : null}
+                </div> : null} */}
 
 
         </div>
