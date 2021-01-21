@@ -3,7 +3,7 @@ from db import crud, schemas
 from main.permissions import IsAuthenticaded
 from main.get_db import get_db
 from sqlalchemy.orm import Session
-from typing import List
+from typing import List, Union
 
 router = APIRouter(prefix="/event",
                    tags=["event"],
@@ -54,6 +54,6 @@ def view_partcipants(event_id: str, db: Session = Depends(get_db)):
     return crud.view_participants(db=db, event_id=event_id)
 
 
-@router.get("/registered-events/{user_id}", response_model=List[List])
+@router.get("/registered-events/{user_id}")
 def view_user_registered_events(user_id: str, db: Session = Depends(get_db)):
     return crud.view_user_registered_events(user_id=user_id, db=db)

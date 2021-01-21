@@ -130,4 +130,4 @@ def view_participants(event_id: str, db: Session):
 
 
 def view_user_registered_events(user_id: str, db: Session):
-    return db.query(models.Participant, models.Slot).filter(models.Participant.user_id == user_id, models.Participant.event_id == models.Slot.event_id).all()
+    return db.query(models.Participant, models.Slot).filter(models.Participant.user_id == user_id, models.Participant.event_id == models.Slot.event_id, models.Participant.slot_id == models.Slot.id).all()

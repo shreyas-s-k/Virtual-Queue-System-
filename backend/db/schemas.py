@@ -2,7 +2,7 @@ from typing import List, Optional
 from pydantic import BaseModel, Field
 import datetime
 from fastapi import Body
-from typing import List
+from typing import List, Union
 
 
 class UserInfo(BaseModel):
@@ -63,14 +63,14 @@ class Participant(ParcipantInfo):
 class UserRegisteredEventDetails(BaseModel):
     slot: Slot = Field(None, alias='Slot')
 
-    event: EventInfo = Field(None, alias='Event')
+    event: Participant = Field(None, alias='Participant')
 
     class Config:
         orm_mode = True
 
 
 class ListUserRegisteredEventDetails(BaseModel):
-    detail: List[dict] = Field(None, alias='Detail')
+    detail: Union[Slot, Participant] = Field(None, alias='Detail')
 
-    class Config:
-        orm_mode = True
+    # class Config:
+    #     orm_mode = True
