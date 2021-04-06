@@ -3,7 +3,7 @@ PORT = 5000
 RELOAD = True
 DEBUG = True
 WORKERS = 1
-HOST = '127.0.0.1'
+HOST = '0.0.0.0'
 
 # select the database [0] => mysql , [1] => sqlite
 DATABASE = ["mysql", "sqlite"][1]
