@@ -4,7 +4,7 @@ The front end of this application is written in ReactJS.
 
 ## Starting the React Server
 
-In the project directory, you can run:
+In the current directory(virtal_queue_sys) , you can run:
 
 ### `npm start`
 
