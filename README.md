@@ -122,4 +122,4 @@ Select slot </br></br>
   <a href="#"><img src="https://raw.githubusercontent.com/shreyas-s-k/Virtual-Queue-System-/main/docs/images/photo_2021-07-29_17-48-21.jpg" alt="Virtual Q"></a>
 </p>
 
-Enrolled succesfully </br></br>
+Enrolled succesfully. 😉</br></br>
