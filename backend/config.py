@@ -7,6 +7,7 @@ HOST = '0.0.0.0'
 
 # select the database [0] => mysql , [1] => sqlite
 DATABASE = ["mysql", "sqlite"][1]
+
 MYSQL_USERNAME = "root"
 MYSQL_PASSWORD = "root"
 MYSQL_HOST = "localhost"
