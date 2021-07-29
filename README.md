@@ -2,6 +2,9 @@
 
 Virtual Queue System for Crowd Management </br>
 
+<p >
+  <a href="#"><img src="https://raw.githubusercontent.com/shreyas-s-k/Virtual-Queue-System-/main/docs/images/photo_2021-07-29_17-48-28%20(2).jpg" alt="Virtual-Queue-System-"></a>
+</p>
 <!-- include screen shots -->
 
 ## Backend
