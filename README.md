@@ -3,7 +3,7 @@
 Virtual Queue System for Crowd Management </br>
 
 <p >
-  <a href="#"><img src="https://raw.githubusercontent.com/shreyas-s-k/Virtual-Queue-System-/main/docs/images/photo_2021-07-29_17-48-28%20(2).jpg" alt="Virtual-Queue-System-"></a>
+  <a href="#"><img src="https://raw.githubusercontent.com/shreyas-s-k/Virtual-Queue-System-/main/docs/images/3.jpg" alt="Virtual-Queue-System-"></a>
 </p>
 <!-- include screen shots -->
 
@@ -68,58 +68,64 @@ REACT_APP_API_URL=http://127.0.0.1:5000
 
 ```
 
-### Demo
+### Demo Screenshots
 
 <p >
-  <a href="#"><img src="https://raw.githubusercontent.com/shreyas-s-k/Virtual-Queue-System-/main/docs/images/photo_2021-07-29_17-48-30.jpg" alt="Virtual Q"></a>
+  <a href="#"><img src="https://raw.githubusercontent.com/shreyas-s-k/Virtual-Queue-System-/main/docs/images/1.jpg" alt="Virtual Q"></a>
 </p>
 Login</br></br>
 
 <p >
-  <a href="#"><img src="https://raw.githubusercontent.com/shreyas-s-k/Virtual-Queue-System-/main/docs/images/photo_2021-07-29_17-48-29.jpg" alt="Virtual Q"></a>
+  <a href="#"><img src="https://raw.githubusercontent.com/shreyas-s-k/Virtual-Queue-System-/main/docs/images/2.jpg" alt="Virtual Q"></a>
 </p>
 
 Register </br></br>
 
 <p >
-  <a href="#"><img src="https://raw.githubusercontent.com/shreyas-s-k/Virtual-Queue-System-/main/docs/images/photo_2021-07-29_17-48-28%20(2).jpg" alt="Virtual-Queue-System-"></a>
+  <a href="#"><img src="https://raw.githubusercontent.com/shreyas-s-k/Virtual-Queue-System-/main/docs/images/3.jpg" alt="Virtual-Queue-System-"></a>
 </p>
 
 Home Page </br></br>
 
 <p >
-  <a href="#"><img src="https://raw.githubusercontent.com/shreyas-s-k/Virtual-Queue-System-/main/docs/images/photo_2021-07-29_17-48-28.jpg" alt="Virtual Q"></a>
+  <a href="#"><img src="https://raw.githubusercontent.com/shreyas-s-k/Virtual-Queue-System-/main/docs/images/4.jpg" alt="Virtual Q"></a>
 </p>
 
 Host an event </br></br>
 
 <p >
-  <a href="#"><img src="https://raw.githubusercontent.com/shreyas-s-k/Virtual-Queue-System-/main/docs/images/photo_2021-07-29_17-48-26.jpg" alt="Virtual Q"></a>
+  <a href="#"><img src="https://raw.githubusercontent.com/shreyas-s-k/Virtual-Queue-System-/main/docs/images/5" alt="Virtual Q"></a>
 </p>
 
 Create slots </br></br>
 
 <p >
-  <a href="#"><img src="https://raw.githubusercontent.com/shreyas-s-k/Virtual-Queue-System-/main/docs/images/photo_2021-07-29_17-48-25.jpg" alt="Virtual Q"></a>
+  <a href="#"><img src="https://raw.githubusercontent.com/shreyas-s-k/Virtual-Queue-System-/main/docs/images/6.jpg" alt="Virtual Q"></a>
 </p>
 
 Event details </br>
 share the event-id with participants</br></br>
+<p >
+  <a href="#"><img src="https://raw.githubusercontent.com/shreyas-s-k/Virtual-Queue-System-/main/docs/images/7.jpg" alt="Virtual Q"></a>
+</p>
+
+User Event Details </br>
+
 
 <p >
-  <a href="#"><img src="https://raw.githubusercontent.com/shreyas-s-k/Virtual-Queue-System-/main/docs/images/photo_2021-07-29_17-48-23%20(2).jpg" alt="Virtual Q"></a>
+  <a href="#"><img src="https://raw.githubusercontent.com/shreyas-s-k/Virtual-Queue-System-/main/docs/images/8.jpg" alt="Virtual Q"></a>
 </p>
 
 Attend an Event </br></br>
 
 <p >
-  <a href="#"><img src="https://raw.githubusercontent.com/shreyas-s-k/Virtual-Queue-System-/main/docs/images/photo_2021-07-29_17-48-22.jpg" alt="Virtual Q"></a>
+  <a href="#"><img src="https://raw.githubusercontent.com/shreyas-s-k/Virtual-Queue-System-/main/docs/images/9.jpg" alt="Virtual Q"></a>
 </p>
 
 Select slot </br></br>
 
 <p >
-  <a href="#"><img src="https://raw.githubusercontent.com/shreyas-s-k/Virtual-Queue-System-/main/docs/images/photo_2021-07-29_17-48-21.jpg" alt="Virtual Q"></a>
+  <a href="#"><img src="https://raw.githubusercontent.com/shreyas-s-k/Virtual-Queue-System-/main/docs/images/10.jpg" alt="Virtual Q"></a>
 </p>
 
 Enrolled succesfully. 😉</br></br>

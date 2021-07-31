@@ -6,6 +6,13 @@
 
 ## Django Inspired 😉
 
-python manage.py runserver </br>
-python manage.py makemigrations</br>
-python manage.py migrate</br>
+#### Get Started
+
+`pip install -r requirements.txt`
+
+`python manage.py makemigrations`</br> 
+
+`python manage.py migrate`</br>
+
+`python manage.py runserver` </br>
+
