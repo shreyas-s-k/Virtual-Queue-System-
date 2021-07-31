@@ -94,7 +94,7 @@ Home Page </br></br>
 Host an event </br></br>
 
 <p >
-  <a href="#"><img src="https://raw.githubusercontent.com/shreyas-s-k/Virtual-Queue-System-/main/docs/images/5" alt="Virtual Q"></a>
+  <a href="#"><img src="https://raw.githubusercontent.com/shreyas-s-k/Virtual-Queue-System-/main/docs/images/5.jpg" alt="Virtual Q"></a>
 </p>
 
 Create slots </br></br>
