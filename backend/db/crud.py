@@ -2,6 +2,7 @@ from db import models, schemas
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 from fastapi import HTTPException
+import datetime
 
 
 def get_user_by_id(db: Session, user_id: int):
@@ -102,8 +103,12 @@ def vew_user_events(user_id: str, db: Session):
 
 def create_participant(participant: schemas.ParcipantInfo, db: Session):
     db_participant = models.Participant(**participant.dict())
+
     db_slot = db.query(models.Slot).filter(
         models.Slot.id == participant.slot_id).first()
+
+    if db_slot.end_time < datetime.datetime.now():
+        raise HTTPException(status_code=404, detail="Slot Expired")
 
     if db_slot.available_tokens <= 0:
         raise HTTPException(status_code=404, detail="Tokens Not Available")

@@ -1,9 +1,18 @@
-python manage.py runserver
-alembic revision --autogenerate -m "message"
-alembic upgrade head
+<!-- ```python manage.py runserver ```  </br>
+```alembic revision --autogenerate -m "message"``` </br>
+```alembic upgrade head``` -->
 
-## You can use
+# FastAPI
 
-python manage.py runserver
-python manage.py makemigrations
-python manage.py migrate
+## Django Inspired 😉
+
+#### Get Started
+
+`pip install -r requirements.txt`
+
+`python manage.py makemigrations`</br> 
+
+`python manage.py migrate`</br>
+
+`python manage.py runserver` </br>
+

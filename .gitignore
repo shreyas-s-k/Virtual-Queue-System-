@@ -1,2 +1,7 @@
 
 virtual_queue_sys/.eslintcache
+
+backend/Pipfile
+backend/sqlite.db
+backend/.vscode
+backend/__pycache__
